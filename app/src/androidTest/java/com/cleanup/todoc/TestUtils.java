@@ -1,6 +1,8 @@
 package com.cleanup.todoc;
 
+import android.arch.lifecycle.LiveData;
 import android.support.annotation.IdRes;
+import android.support.annotation.Nullable;
 import android.support.test.espresso.PerformException;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
@@ -11,6 +13,10 @@ import android.view.View;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
+
+import java.util.Observer;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by dannyroa on 5/9/15.

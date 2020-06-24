@@ -46,8 +46,9 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
 
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("id", 1);
-                contentValues.put("username", "Philippe");
-                contentValues.put("urlPicture", "https://oc-user.imgix.net/users/avatars/15175844164713_frame_523.jpg?auto=compress,format&q=80&h=100&dpr=2");
+                contentValues.put("projectId", 1L);
+                contentValues.put("name", "Exemple de tache");
+                contentValues.put("creationTimestamp", "01-01-2020 10:45:24");
 
                 db.insert("Task", OnConflictStrategy.IGNORE, contentValues);
             }
