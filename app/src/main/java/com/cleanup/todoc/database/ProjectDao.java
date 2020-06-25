@@ -7,7 +7,6 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
 
 @Dao
 public interface ProjectDao {
