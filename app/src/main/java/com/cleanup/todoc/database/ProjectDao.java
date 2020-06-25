@@ -11,8 +11,8 @@ import com.cleanup.todoc.model.Project;
 @Dao
 public interface ProjectDao {
 
-    @Query("SELECT * FROM Project WHERE id = :projectId")
-    LiveData<Project> getProjects(long projectId);
+    @Query("SELECT * FROM Project")
+    LiveData<Project> getProject();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertProject(Project project);

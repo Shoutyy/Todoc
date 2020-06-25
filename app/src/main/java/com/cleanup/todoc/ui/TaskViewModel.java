@@ -30,20 +30,20 @@ public class TaskViewModel extends ViewModel {
     }
 
     // -------------
-    // FOR USER
+    // FOR PROJECT
     // -------------
 
-    public LiveData<Project> getProject(long projectId) { return this.currentProject;  }
+    public LiveData<Project> getProject() { return this.currentProject;  }
 
     // -------------
-    // FOR ITEM
+    // FOR TASK
     // -------------
 
-    public LiveData<List<Task>> getTasks(long projectId) {
-        return taskDataSource.getTasks(projectId);
+    public LiveData<List<Task>> getTasks() {
+        return taskDataSource.getTasks();
     }
 
-    public void createTask(Task task) {
+    public void insertTask(Task task) {
         executor.execute(() -> {
             taskDataSource.createTask(task);
         });

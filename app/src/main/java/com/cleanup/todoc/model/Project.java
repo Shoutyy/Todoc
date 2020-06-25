@@ -1,5 +1,6 @@
 package com.cleanup.todoc.model;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
@@ -23,13 +24,13 @@ public class Project {
     /**
      * The name of the project
      */
-    @NonNull
+    @NonNull @ColumnInfo(name = "name")
     public final String name;
 
     /**
      * The hex (ARGB) code of the color associated to the project
      */
-    @ColorInt
+    @ColorInt @ColumnInfo(name = "color")
     public final int color;
 
     /**

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
     // 1 - FOR DATA
     private TaskViewModel taskViewModel;
+
     /**
      * List of all projects available in the application
      */
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
         // 8 - Configure RecyclerView & ViewModel
         this.configureViewModel();
-
+        this.getTasks();
 
         setContentView(R.layout.activity_main);
 
@@ -125,13 +126,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         this.taskViewModel = ViewModelProviders.of(this, mViewModelFactory).get(TaskViewModel.class);
     }
 
-
-    // 3 - Delete an item
-    private void deleteItem(Task task){
-        this.taskViewModel.deleteTask(task.getId());
-    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actions, menu);
@@ -152,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             sortMethod = SortMethod.RECENT_FIRST;
         }
 
-        updateTasks();
+        updateTasks(tasks);
 
         return super.onOptionsItemSelected(item);
     }
@@ -160,7 +154,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @Override
     public void onDeleteTask(Task task) {
         tasks.remove(task);
-        updateTasks();
+        this.taskViewModel.deleteTask(task.getId());
+        updateTasks(tasks);
     }
 
     /**
@@ -206,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 dialogInterface.dismiss();
             }
         }
-        // If dialog is aloready closed
+        // If dialog is already closed
         else {
             dialogInterface.dismiss();
         }
@@ -226,6 +221,10 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         populateDialogSpinner();
     }
 
+
+    private void getTasks(){
+        this.taskViewModel.getTasks().observe(this, this::updateTasks);
+    }
     /**
      * Adds the given task to the list of created tasks.
      *
@@ -233,14 +232,15 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      */
     private void addTask(@NonNull Task task) {
         tasks.add(task);
-        updateTasks();
-        this.taskViewModel.createTask(task);
+        updateTasks(tasks);
+        this.taskViewModel.insertTask(task);
     }
+
     /**
      * Updates the list of tasks in the UI
      */
 
-    private void updateTasks() {
+    private void updateTasks(List<Task> tasks) {
         if (tasks.size() == 0) {
             lblNoTasks.setVisibility(View.VISIBLE);
             listTasks.setVisibility(View.GONE);

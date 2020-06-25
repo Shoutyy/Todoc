@@ -43,14 +43,27 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
-
+        /*
                 ContentValues contentValues = new ContentValues();
-                contentValues.put("id", 1);
-                contentValues.put("projectId", 1L);
-                contentValues.put("name", "Exemple de tache");
-                contentValues.put("creationTimestamp", "01-01-2020 10:45:24");
+                contentValues.put("id", 2L);
+                contentValues.put("name", "Projet Lucidia");
+                contentValues.put("color", 0xFFB4CDBA);
 
-                db.insert("Task", OnConflictStrategy.IGNORE, contentValues);
+                db.insert("Project", OnConflictStrategy.IGNORE, contentValues);
+
+
+                contentValues.put("id", 1L);
+                contentValues.put("name", "Projet Tartampion");
+                contentValues.put("color", 0xFFEADAD1);
+                contentValues.put("id", 3L);
+                contentValues.put("name", "Projet Circus");
+                contentValues.put("color", 0xFFA3CED2);
+
+
+
+                ContentValues contentValues2 = new ContentValues();
+                db.insert("Project", OnConflictStrategy.IGNORE, contentValues2);
+                */
             }
         };
     }
