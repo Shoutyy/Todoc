@@ -89,12 +89,6 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
                 contentValues.put("color", 0xFFA3CED2);
                 db.insert("Project", OnConflictStrategy.IGNORE, contentValues3);
 
-
-
-
-
-
-
             }
         };
     } */

@@ -45,7 +45,12 @@ public class MainActivityInstrumentedTest {
     // FOR DATA
     private SaveMyTripDatabase database; //R
 
-    private static Project Project1 = new Project(4L, "Projet 4", 0xEFEADAD1);
+    public static Project[] getAllProjects() {
+        return new Project[]{
+                new Project(4L, "Projet 4", 0xEFEADAD1),
+        };
+    }
+    //private static Project Project1 = new Project(4L, "Projet 4", 0xEFEADAD1);
     private static Task Task1 = new Task(1, 4L, "Menage" ,12/23/2020);
     private static Task Task2 = new Task(2, 4L, "Jardinage" ,12/25/2020);
     private static Task Task3 = new Task(3, 4L, "Babysitter" ,12/27/2020);
@@ -67,7 +72,7 @@ public class MainActivityInstrumentedTest {
     @Test
     public void getTasksWhenNoTaskInserted() throws InterruptedException {
         // TEST
-        List<Task> Tasks = LiveDataTestUtil.getValue(this.database.taskDao().getTasks(1L));
+        List<Task> Tasks = LiveDataTestUtil.getValue(this.database.taskDao().getTasks());
         assertTrue(Tasks.isEmpty());
     }
 
@@ -75,26 +80,26 @@ public class MainActivityInstrumentedTest {
     public void insertAndGetTasks() throws InterruptedException {
 
         // BEFORE : Adding demo project & demo task
-        this.database.projectDao().insertProject(Project1);
+        this.database.projectDao().insertProject(getAllProjects());
         this.database.taskDao().insertTask(Task1);
         this.database.taskDao().insertTask(Task2);
         this.database.taskDao().insertTask(Task3);
 
         // TEST
-    List<Task> tasks = LiveDataTestUtil.getValue(this.database.taskDao().getTasks(4L));
+    List<Task> tasks = LiveDataTestUtil.getValue(this.database.taskDao().getTasks());
         assertTrue(tasks.size() == 3);
     }
 
     @Test
     public void insertAndDeleteItem() throws InterruptedException {
-        // BEFORE : Adding demo user & demo item. Next, get the item added & delete it.
-        this.database.projectDao().insertProject(Project1);
+        // BEFORE : Adding demo project & demo task. Next, get the item added & delete it.
+        this.database.projectDao().insertProject(getAllProjects());
         this.database.taskDao().insertTask(Task1);
-        Task taskAdded = LiveDataTestUtil.getValue(this.database.taskDao().getTasks(4L)).get(0);
+        Task taskAdded = LiveDataTestUtil.getValue(this.database.taskDao().getTasks()).get(0);
         this.database.taskDao().deleteTask(taskAdded.getId());
 
         //TEST
-        List<Task> tasks = LiveDataTestUtil.getValue(this.database.taskDao().getTasks(4L));
+        List<Task> tasks = LiveDataTestUtil.getValue(this.database.taskDao().getTasks());
         assertTrue(tasks.isEmpty());
     }
 
