@@ -113,7 +113,7 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
         } catch (JSONException e) {
 
         }
-    }   */
+    }
 
     private static JSONArray loadJSONArray(Context context) {
         StringBuilder builder = new StringBuilder();
@@ -134,5 +134,5 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
             exeeption.printStackTrace();
         }
         return null;
-    }
+    } */
 }

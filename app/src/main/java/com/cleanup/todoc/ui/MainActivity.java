@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 8 - Configure RecyclerView & ViewModel
+        // 8 - Configure  & ViewModel
         this.configureViewModel();
         this.getTasks();
 
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             sortMethod = SortMethod.RECENT_FIRST;
         }
 
-        updateTasks(tasks);
+        getTasks();
 
         return super.onOptionsItemSelected(item);
     }
@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     public void onDeleteTask(Task task) {
         tasks.remove(task);
         this.taskViewModel.deleteTask(task.getId());
-        updateTasks(tasks);
     }
 
     /**
@@ -232,7 +231,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      */
     private void addTask(@NonNull Task task) {
         tasks.add(task);
-        updateTasks(tasks);
         this.taskViewModel.insertTask(task);
     }
 
@@ -262,10 +260,9 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                     break;
 
             }
-            adapter.updateTasks(tasks);
         }
+        adapter.updateTasks(tasks);
     }
-
     /**
      * Returns the dialog allowing the user to create a new task.
      *

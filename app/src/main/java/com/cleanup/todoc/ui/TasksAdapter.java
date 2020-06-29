@@ -44,6 +44,9 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
         this.deleteTaskListener = deleteTaskListener;
     }
 
+    public Task getTasks(int position){
+        return this.tasks.get(position);
+    }
     /**
      * Updates the list of tasks the adapter deals with.
      *
