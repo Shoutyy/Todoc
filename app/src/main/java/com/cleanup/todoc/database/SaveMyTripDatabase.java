@@ -1,10 +1,8 @@
 package com.cleanup.todoc.database;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
-import android.content.ContentValues;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.arch.persistence.room.Database;
